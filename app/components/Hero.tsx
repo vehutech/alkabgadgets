@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
+import Decorate from './Decorate';
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -19,7 +20,7 @@ const HeroSlider = () => {
     {
       category: "Accessories",
       tagline: "Perfect Companions",
-      image: "https://images.unsplash.com/photo-1609081219090-a6d81d3085bf?w=800&q=80"
+      image: "/images/accessories.jpg"
     }
   ];
 
@@ -36,6 +37,7 @@ const HeroSlider = () => {
 
   return (
     <div className="relative w-full h-screen bg-white overflow-hidden">
+        <Decorate />
       {/* Subtle gradient clouds */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-orange-500/5 rounded-full blur-3xl animate-float" />

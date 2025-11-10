@@ -31,7 +31,7 @@ export default function Nav() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="relative w-full">
+    <div className="relative w-full mt-16">
       <Navbar>
         {/* Desktop Navigation */}
         <NavBody>
@@ -86,7 +86,7 @@ export default function Nav() {
           </MobileNavMenu>
         </MobileNav>
       </Navbar>
-      <DummyContent />
+      {/* <DummyContent /> */}
 
       {/* Navbar */}
     </div>
