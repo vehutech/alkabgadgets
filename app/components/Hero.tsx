@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Decorate from './Decorate';
+import Image from 'next/image';
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -15,7 +16,7 @@ const HeroSlider = () => {
     {
       category: "Android",
       tagline: "Innovation Unleashed",
-      image: "images/android.jpg"
+      image: "/images/android.jpg"
     },
     {
       category: "Accessories",
@@ -29,14 +30,14 @@ const HeroSlider = () => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 4000);
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
 
   return (
-    <div className="relative w-full h-screen bg-white overflow-hidden">
+    <div className="relative w-full h-screen bg-white overflow-hidden mt-40">
         <Decorate />
       {/* Subtle gradient clouds */}
       <div className="absolute inset-0 pointer-events-none">
@@ -70,7 +71,7 @@ const HeroSlider = () => {
 
             <div className="flex items-center gap-6">
               <button className="px-8 py-3 bg-slate-900 text-white text-sm font-medium rounded-full hover:bg-slate-800 transition-all duration-300 hover:shadow-lg hover:shadow-slate-900/20">
-                Shop Now
+                Shop
               </button>
               
               <button className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-2">
@@ -94,13 +95,14 @@ const HeroSlider = () => {
                 }`}
               >
                 <div className="relative w-full h-full">
-                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-slate-900/10 rounded-3xl" />
-                  <img
+                  <div className="absolute inset-0 bg-linear-to-br from-orange-500/10 to-slate-900/10 rounded-3xl" />
+                  <Image
+                    fill
                     src={slide.image}
                     alt={slide.category}
                     className="w-full h-full object-cover rounded-3xl shadow-2xl"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent rounded-3xl" />
+                  <div className="absolute inset-0 bg-linear-to-t from-white/20 to-transparent rounded-3xl" />
                 </div>
               </div>
             ))}

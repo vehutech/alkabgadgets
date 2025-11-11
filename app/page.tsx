@@ -1,9 +1,13 @@
 import React from 'react'
 import HeroSlider from './components/Hero'
+import Shop from './components/Shop'
 
 const page = () => {
   return (
-    <HeroSlider />
+    <div>
+      <HeroSlider />
+      <Shop />
+    </div>
   )
 }
 
