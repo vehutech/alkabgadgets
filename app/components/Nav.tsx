@@ -6,8 +6,6 @@ import {
   NavbarLogo,
   NavbarButton,
   MobileNavHeader,
-  MobileNavToggle,
-  MobileNavMenu,
 } from "@/components/ui/resizable-navbar";
 import { useState } from "react";
 import { Smartphone, Headphones } from "lucide-react";
@@ -23,46 +21,47 @@ export default function Nav() {
       link: "#iphone",
       icon: Smartphone,
       dropdown: {
-        image: "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=400&h=300&fit=crop",
+        image:
+          "https://images.unsplash.com/photo-1591337676887-a217a6970a8a?w=400&h=300&fit=crop",
         categories: [
           { name: "Brand New", desc: "Latest sealed devices", link: "#new-iphones" },
           { name: "UK Used", desc: "Premium pre-owned", link: "#uk-iphones" },
           { name: "Nigerian Used", desc: "Certified like-new", link: "#refurb-iphones" },
           { name: "Trade-In", desc: "Upgrade your device", link: "#trade-iphones" },
-        ]
-      }
+        ],
+      },
     },
     {
       name: "Android",
       link: "#android",
       icon: Smartphone,
       dropdown: {
-        image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop",
+        image:
+          "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop",
         categories: [
           { name: "Brand New", desc: "Factory sealed phones", link: "#new-android" },
           { name: "UK Used", desc: "Quality pre-owned", link: "#uk-android" },
           { name: "Samsung Galaxy", desc: "Premium Galaxy series", link: "#samsung" },
           { name: "Trade-In", desc: "Exchange your phone", link: "#trade-android" },
-        ]
-      }
+        ],
+      },
     },
     {
       name: "Accessories",
       link: "#accessories",
       icon: Headphones,
       dropdown: {
-        image: "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop",
+        image:
+          "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop",
         categories: [
           { name: "Cases & Protection", desc: "Keep devices safe", link: "#cases" },
           { name: "Chargers & Cables", desc: "Power solutions", link: "#chargers" },
           { name: "Audio", desc: "Headphones & speakers", link: "#audio" },
           { name: "Screen Protection", desc: "Tempered glass & films", link: "#screen" },
-        ]
-      }
+        ],
+      },
     },
   ];
-
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div className="relative w-full mt-16">
@@ -70,8 +69,8 @@ export default function Nav() {
         {/* Desktop Navigation */}
         <NavBody>
           <NavbarLogo />
-          
-          {/* Custom Nav Items with Dropdowns */}
+
+          {/* Desktop Nav Items */}
           <div className="hidden lg:flex items-center gap-8">
             {navItems.map((item, idx) => {
               const Icon = item.icon;
@@ -90,15 +89,15 @@ export default function Nav() {
                     {item.name}
                   </a>
 
-                  {/* Dropdown Mega Menu */}
+                  {/* Dropdown */}
                   {hoveredItem === idx && (
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-50">
                       <div className="bg-white dark:bg-neutral-900 rounded-2xl shadow-2xl border border-neutral-200 dark:border-neutral-800 overflow-hidden w-[500px]">
                         <div className="grid grid-cols-2 gap-0">
-                          {/* Image Section */}
+                          {/* Image */}
                           <div className="relative h-full min-h-[280px] bg-linear-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-900">
                             <Image
-                            fill
+                              fill
                               src={item.dropdown.image}
                               alt={item.name}
                               className="absolute inset-0 w-full h-full object-cover"
@@ -110,7 +109,7 @@ export default function Nav() {
                             </div>
                           </div>
 
-                          {/* Categories Section */}
+                          {/* Categories */}
                           <div className="p-6 space-y-1">
                             {item.dropdown.categories.map((category, catIdx) => (
                               <a
@@ -136,48 +135,29 @@ export default function Nav() {
             })}
           </div>
 
+          {/* Shop Now (Visible on all screens) */}
           <div className="flex items-center gap-4">
             <NavbarButton variant="primary">
               <Link href="#shop" className="flex items-center gap-2">
                 Shop Now
               </Link>
-              </NavbarButton>
+            </NavbarButton>
           </div>
         </NavBody>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation (simplified — logo left, shop right) */}
         <MobileNav>
-          <MobileNavHeader>
+          <MobileNavHeader className="flex justify-between items-center w-full">
             <NavbarLogo />
-            <MobileNavToggle
-              isOpen={isMobileMenuOpen}
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            />
+            <NavbarButton
+              variant="primary"
+              className="lg:hidden"
+            >
+              <Link href="#shop" className="flex items-center gap-2">
+                Shop Now
+              </Link>
+            </NavbarButton>
           </MobileNavHeader>
-          <MobileNavMenu
-            isOpen={isMobileMenuOpen}
-            onClose={() => setIsMobileMenuOpen(false)}
-          >
-            {navItems.map((item, idx) => (
-              <a
-                key={`mobile-link-${idx}`}
-                href={item.link}
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="relative text-neutral-600 dark:text-neutral-300"
-              >
-                <span className="block">{item.name}</span>
-              </a>
-            ))}
-            <div className="flex w-full flex-col gap-4">
-              <NavbarButton
-                onClick={() => setIsMobileMenuOpen(false)}
-                variant="primary"
-                className="w-full"
-              >
-                Shop
-              </NavbarButton>
-            </div>
-          </MobileNavMenu>
         </MobileNav>
       </Navbar>
     </div>
