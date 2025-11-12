@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Decorate from './Decorate';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HeroSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -71,7 +72,9 @@ const HeroSlider = () => {
 
             <div className="flex items-center gap-6">
               <button className="px-8 py-3 bg-slate-900 text-white text-sm font-medium rounded-full hover:bg-slate-800 transition-all duration-300 hover:shadow-lg hover:shadow-slate-900/20">
-                Shop
+                <Link href="#shop" className="flex items-center gap-2">
+                  Shop
+                </Link>
               </button>
               
               <button className="text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors flex items-center gap-2">

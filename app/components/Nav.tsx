@@ -12,6 +12,7 @@ import {
 import { useState } from "react";
 import { Smartphone, Headphones } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Nav() {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -97,6 +98,7 @@ export default function Nav() {
                           {/* Image Section */}
                           <div className="relative h-full min-h-[280px] bg-linear-to-br from-neutral-100 to-neutral-200 dark:from-neutral-800 dark:to-neutral-900">
                             <Image
+                            fill
                               src={item.dropdown.image}
                               alt={item.name}
                               className="absolute inset-0 w-full h-full object-cover"
@@ -135,7 +137,11 @@ export default function Nav() {
           </div>
 
           <div className="flex items-center gap-4">
-            <NavbarButton variant="primary">Shop Now</NavbarButton>
+            <NavbarButton variant="primary">
+              <Link href="#shop" className="flex items-center gap-2">
+                Shop Now
+              </Link>
+              </NavbarButton>
           </div>
         </NavBody>
 

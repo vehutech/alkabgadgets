@@ -80,11 +80,11 @@ export default function Shop() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-neutral-50 to-neutral-100 dark:from-neutral-950 dark:to-neutral-900 py-12 px-4">
+    <div id="shop" className="min-h-screen bg-linear-to-br from-neutral-50 to-neutral-100 dark:from-neutral-950 dark:to-neutral-900 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-2">Shop</h1>
+          <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-2">Featured Products</h1>
           <p className="text-neutral-600 dark:text-neutral-400">Discover premium devices and accessories</p>
         </div>
 
