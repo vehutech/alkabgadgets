@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useState } from 'react';
-import { Smartphone, Monitor, Headphones, Repeat, X } from 'lucide-react';
+import { Smartphone, Monitor, Headphones, Repeat, X, LucideProps } from 'lucide-react';
 import Image from 'next/image';
 
 export default function MobileShop() {
@@ -12,9 +12,10 @@ export default function MobileShop() {
   interface Category  {
       id: number;
       name: string;
-      icon: React.RefAttributes<SVGSVGElement>
+      icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>
       gradient: string;
       items: string,
+      fullWidth?: boolean;
       dropdown: {
         image: string;
         categories: 
