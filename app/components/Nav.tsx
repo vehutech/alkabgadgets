@@ -10,7 +10,6 @@ import {
 import { useState } from "react";
 import { Smartphone, Headphones } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function Nav() {
   const [hoveredItem, setHoveredItem] = useState<number | null>(null);
@@ -137,10 +136,8 @@ export default function Nav() {
 
           {/* Shop Now (Visible on all screens) */}
           <div className="flex items-center gap-4">
-            <NavbarButton variant="primary">
-              <Link href="#shop" className="flex items-center gap-2">
-                Shop Now
-              </Link>
+            <NavbarButton href="#shop" variant="primary">
+              Shop Now
             </NavbarButton>
           </div>
         </NavBody>
@@ -152,10 +149,9 @@ export default function Nav() {
             <NavbarButton
               variant="primary"
               className="lg:hidden"
+              href="#shop"
             >
-              <Link href="#shop" className="flex items-center gap-2">
                 Shop Now
-              </Link>
             </NavbarButton>
           </MobileNavHeader>
         </MobileNav>

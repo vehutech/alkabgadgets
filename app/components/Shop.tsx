@@ -84,7 +84,7 @@ export default function Shop() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-2">Featured Products</h1>
+          <h1 className="text-4xl font-bold text-neutral-900 dark:text-white mb-2">Top Deals</h1>
           <p className="text-neutral-600 dark:text-neutral-400">Discover premium devices and accessories</p>
         </div>
 
