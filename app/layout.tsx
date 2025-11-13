@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
 import localFont from "next/font/local";
 
 import "./globals.css";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 
-// Geist Mono — default global font
-const geistMono = Geist_Mono({
+// Geist — default global font
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-geist-sans",
+  display: "swap",
 });
 
 // Quicksand — for special headings only
@@ -18,17 +19,17 @@ const quickSandFont = localFont({
     {
       path: "../public/fonts/Quicksand_Light.otf",
       weight: "300",
-      style: "normal"
+      style: "normal",
     },
     {
       path: "../public/fonts/Quicksand_Book.otf",
       weight: "400",
-      style: "normal"
+      style: "normal",
     },
     {
       path: "../public/fonts/Quicksand_Bold.otf",
       weight: "700",
-      style: "normal"
+      style: "normal",
     },
   ],
   variable: "--font-quicksand",
@@ -48,9 +49,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistMono.variable} ${quickSandFont.variable}`}
+      className={`${geist.variable} ${quickSandFont.variable}`}
     >
-      <body className="antialiased font-[var(--font-geist-mono)]">
+      <body className="antialiased font-[var(--font-geist-sans)]">
         <Nav />
         {children}
         <Footer />

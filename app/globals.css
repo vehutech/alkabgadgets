@@ -125,7 +125,7 @@
 
 html {
   scroll-behavior: smooth;
-  font-family: var(--font-geist-mono), sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
 }
 
 .quicksand {
