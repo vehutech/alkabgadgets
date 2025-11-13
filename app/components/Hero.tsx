@@ -38,7 +38,7 @@ const HeroSlider = () => {
   };
 
   return (
-    <div className="relative w-full h-screen bg-white overflow-hidden mt-40">
+    <div className="relative w-full h-screen overflow-hidden mt-40">
         <Decorate />
       {/* Subtle gradient clouds */}
       <div className="absolute inset-0 pointer-events-none">

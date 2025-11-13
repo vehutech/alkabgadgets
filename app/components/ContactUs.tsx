@@ -30,7 +30,7 @@ export function ContactUs() {
   };
 
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4">
       <div className="max-w-4xl w-full">
         {/* Header */}
         <div className="text-center mb-12">
@@ -70,8 +70,8 @@ export function ContactUs() {
               </div>
               <div>
                 <h3 className="font-medium text-gray-900 mb-1">Location</h3>
-                <p className="text-gray-600">123 Admiralty Way,</p>
-                <p className="text-gray-600">Lekki Phase 1, Lagos</p>
+                <p className="text-gray-600">Sule Oyidi St</p>
+                <p className="text-gray-600">Opposite Federal University Lokoja, Lokoja 260101, Kogi</p>
               </div>
             </div>
           </div>

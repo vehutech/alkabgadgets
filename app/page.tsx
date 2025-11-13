@@ -10,7 +10,7 @@ import { GoogleMap } from './components/FindUs'
 
 const page = () => {
   return (
-    <div>
+    <div className='bg-secondary/20'>
       <MobileShop />
       {/* <PhoneSlider /> */}
       {/* <ThreeDMarqueeDemo /> */}

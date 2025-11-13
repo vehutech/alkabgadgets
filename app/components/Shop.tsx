@@ -1,9 +1,124 @@
 "use client";
 import { useState, useMemo } from "react";
 import { Search, SlidersHorizontal, X, ChevronLeft, ChevronRight, Play, Star, ShoppingCart, Heart } from "lucide-react";
-import { products } from "@/lib/product-data";
-import { productType } from "@/lib/product-data";
-import Image from "next/image";
+
+// Product type definition
+type ProductType = {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  originalPrice?: number;
+  category: string;
+  condition: string;
+  rating: number;
+  reviews: number;
+  featured: boolean;
+  images: string[];
+  video: string;
+};
+
+// Sample products data
+const products: ProductType[] = [
+  {
+    id: 1,
+    name: "iPhone 15 Pro Max",
+    description: "Latest flagship with titanium design and A17 Pro chip",
+    price: 1199,
+    originalPrice: 1299,
+    category: "iphone",
+    condition: "brand-new",
+    rating: 4.9,
+    reviews: 234,
+    featured: true,
+    images: [
+      "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&h=800&fit=crop",
+      "https://images.unsplash.com/photo-1695048133082-3915a8dd7a10?w=800&h=800&fit=crop",
+      "https://images.unsplash.com/photo-1695048133548-cac19f3f0b3e?w=800&h=800&fit=crop"
+    ],
+    video: "https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=800&h=800&fit=crop"
+  },
+  {
+    id: 2,
+    name: "Samsung Galaxy S24 Ultra",
+    description: "Powerful Android flagship with S Pen and AI features",
+    price: 1099,
+    originalPrice: 1199,
+    category: "android",
+    condition: "uk-used",
+    rating: 4.8,
+    reviews: 189,
+    featured: true,
+    images: [
+      "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=800&h=800&fit=crop",
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&h=800&fit=crop"
+    ],
+    video: "https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=800&h=800&fit=crop"
+  },
+  {
+    id: 3,
+    name: "AirPods Pro (2nd Gen)",
+    description: "Premium wireless earbuds with active noise cancellation",
+    price: 249,
+    category: "accessories",
+    condition: "brand-new",
+    rating: 4.7,
+    reviews: 456,
+    featured: false,
+    images: [
+      "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=800&h=800&fit=crop",
+      "https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=800&h=800&fit=crop"
+    ],
+    video: "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=800&h=800&fit=crop"
+  },
+  {
+    id: 4,
+    name: "iPhone 14 Pro",
+    description: "Previous gen flagship still going strong",
+    price: 899,
+    originalPrice: 999,
+    category: "iphone",
+    condition: "uk-used",
+    rating: 4.8,
+    reviews: 312,
+    featured: false,
+    images: [
+      "https://images.unsplash.com/photo-1678652197950-521601fa5c44?w=800&h=800&fit=crop",
+      "https://images.unsplash.com/photo-1678911820864-e2c567c655d7?w=800&h=800&fit=crop"
+    ],
+    video: "https://images.unsplash.com/photo-1678652197950-521601fa5c44?w=800&h=800&fit=crop"
+  },
+  {
+    id: 5,
+    name: "Google Pixel 8 Pro",
+    description: "AI-powered photography and pure Android experience",
+    price: 799,
+    category: "android",
+    condition: "brand-new",
+    rating: 4.6,
+    reviews: 145,
+    featured: false,
+    images: [
+      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&h=800&fit=crop"
+    ],
+    video: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&h=800&fit=crop"
+  },
+  {
+    id: 6,
+    name: "MagSafe Charger",
+    description: "Fast wireless charging for iPhone",
+    price: 39,
+    category: "accessories",
+    condition: "brand-new",
+    rating: 4.5,
+    reviews: 234,
+    featured: false,
+    images: [
+      "https://images.unsplash.com/photo-1591290619762-d71bc36f1d1c?w=800&h=800&fit=crop"
+    ],
+    video: "https://images.unsplash.com/photo-1591290619762-d71bc36f1d1c?w=800&h=800&fit=crop"
+  }
+];
 
 export default function Shop() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,9 +127,9 @@ export default function Shop() {
   const [priceRange, setPriceRange] = useState([0, 2000]);
   const [sortBy, setSortBy] = useState("featured");
   const [showFilters, setShowFilters] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState<productType | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
+  const [showMobileSearch, setShowMobileSearch] = useState(false);
 
   const categories = [
     { value: "all", label: "All Products" },
@@ -55,7 +170,7 @@ export default function Shop() {
     return filtered;
   }, [searchQuery, selectedCategory, selectedCondition, priceRange, sortBy]);
 
-  const openProductModal = (product: productType) => {
+  const openProductModal = (product: ProductType) => {
     setSelectedProduct(product);
     setCurrentImageIndex(0);
   };
@@ -67,7 +182,7 @@ export default function Shop() {
 
   const nextImage = () => {
     if (selectedProduct) {
-      const totalMedia = selectedProduct.images.length + 1; // +1 for video
+      const totalMedia = selectedProduct.images.length + 1;
       setCurrentImageIndex((prev) => (prev + 1) % totalMedia);
     }
   };
@@ -80,7 +195,7 @@ export default function Shop() {
   };
 
   return (
-    <div id="shop" className="min-h-screen bg-linear-to-br from-neutral-50 to-neutral-100 dark:from-neutral-950 dark:to-neutral-900 py-12 px-4">
+    <div id="shop" className="min-h-screen dark:from-neutral-950 dark:to-neutral-900 py-12 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8">
@@ -90,7 +205,71 @@ export default function Shop() {
 
         {/* Search & Filter Bar */}
         <div className="mb-8 space-y-4">
-          <div className="flex flex-col lg:flex-row gap-4">
+          {/* Mobile View */}
+          <div className="lg:hidden">
+            {!showMobileSearch ? (
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setShowMobileSearch(true)}
+                  className="flex-1 px-6 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl flex items-center justify-center gap-2 hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors text-neutral-900 dark:text-white"
+                >
+                  <Search className="w-5 h-5" />
+                  <span>Search</span>
+                </button>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                >
+                  <option value="featured">Featured</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Highest Rated</option>
+                </select>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <div className="flex items-center gap-2">
+                  <div className="flex-1 relative">
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
+                    <input
+                      type="text"
+                      placeholder="Search products..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-12 pr-12 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                      autoFocus
+                    />
+                    <button
+                      onClick={() => setShowMobileSearch(false)}
+                      className="absolute right-4 top-1/2 -translate-y-1/2"
+                    >
+                      <X className="w-5 h-5 text-neutral-400" />
+                    </button>
+                  </div>
+                  <button
+                    onClick={() => setShowFilters(!showFilters)}
+                    className="p-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl hover:bg-neutral-50 dark:hover:bg-neutral-700 transition-colors"
+                  >
+                    <SlidersHorizontal className="w-5 h-5 text-neutral-900 dark:text-white" />
+                  </button>
+                </div>
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="w-full px-4 py-3 bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-neutral-900 dark:text-white"
+                >
+                  <option value="featured">Featured</option>
+                  <option value="price-low">Price: Low to High</option>
+                  <option value="price-high">Price: High to Low</option>
+                  <option value="rating">Highest Rated</option>
+                </select>
+              </div>
+            )}
+          </div>
+
+          {/* Desktop View */}
+          <div className="hidden lg:flex flex-col lg:flex-row gap-4">
             {/* Search */}
             <div className="flex-1 relative">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400" />
@@ -204,8 +383,7 @@ export default function Shop() {
             >
               {/* Product Image */}
               <div className="relative aspect-square overflow-hidden bg-neutral-100 dark:bg-neutral-900">
-                <Image
-                    fill
+                <img
                   src={product.images[0]}
                   alt={product.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -285,14 +463,14 @@ export default function Shop() {
               <div>
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 mb-4">
                   {currentImageIndex < selectedProduct.images.length ? (
-                    <Image
+                    <img
                       src={selectedProduct.images[currentImageIndex]}
                       alt={selectedProduct.name}
                       className="w-full h-full object-cover"
                     />
                   ) : (
                     <div className="relative w-full h-full flex items-center justify-center">
-                      <Image
+                      <img
                         src={selectedProduct.video}
                         alt="Video thumbnail"
                         className="w-full h-full object-cover"
@@ -332,7 +510,7 @@ export default function Shop() {
                           : "border-transparent hover:border-neutral-300 dark:hover:border-neutral-600"
                       }`}
                     >
-                      <Image src={img} alt={`View ${idx + 1}`} className="w-full h-full object-cover" />
+                      <img src={img} alt={`View ${idx + 1}`} className="w-full h-full object-cover" />
                     </button>
                   ))}
                   <button
@@ -343,7 +521,7 @@ export default function Shop() {
                         : "border-transparent hover:border-neutral-300 dark:hover:border-neutral-600"
                     }`}
                   >
-                    <Image src={selectedProduct.video} alt="Video" className="w-full h-full object-cover" />
+                    <img src={selectedProduct.video} alt="Video" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                       <Play className="w-6 h-6 text-white" />
                     </div>
@@ -411,10 +589,6 @@ export default function Shop() {
                 </div>
 
                 <div className="mt-auto space-y-3">
-                  <button className="w-full py-4 bg-blue-500 text-white rounded-xl font-semibold hover:bg-blue-600 transition-colors flex items-center justify-center gap-2">
-                    <ShoppingCart className="w-5 h-5" />
-                    Add to Cart
-                  </button>
                   <button className="w-full py-4 bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-white rounded-xl font-semibold hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-colors flex items-center justify-center gap-2">
                     <Heart className="w-5 h-5" />
                     Add to Wishlist
