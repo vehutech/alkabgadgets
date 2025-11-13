@@ -117,14 +117,15 @@ export default function MobileShop() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-white via-[#1a1640] to-[#0f0d2e] flex items-center justify-center p-4 overflow-hidden">
+    <div className="min-h-screen bg-linear-to-b from-white via-[#1a1640] to-[#0f0d2e] flex justify-center p-4 overflow-hidden">
       <div className="w-full max-w-md relative">
         {/* Header */}
         <div className={`text-center mb-8 transition-all duration-500 ${isAnimating ? 'opacity-0 -translate-y-10' : 'opacity-100'}`}>
-           <h1 className="text-6xl md:text-7xl lg:text-8xl font-light text-white tracking-tight leading-none">
+          <p className='text-white font-bold text-md mt-20'>Quality you can trust </p>
+           <h1 className="text-4xl md:text-7xl lg:text-8xl font-bold text-white -tracking-[0.1em] leading-none">
                 Alkab Gadgets
               </h1>
-          <p className="text-gray-400 text-sm">Choose your category</p>
+          <p className="text-gray-400 text-sm mt-8">Choose your category</p>
         </div>
 
         {/* Categories Grid */}
