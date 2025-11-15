@@ -63,7 +63,7 @@ export async function createProduct(
   product: Omit<ProductType, "id" | "createdAt" | "updatedAt">
 ): Promise<{ success: boolean; id?: string; error?: string }> {
   const user = await getCurrentUser();
-  if (!user) redirect("/admin/login");
+  if (!user) redirect("/login");
 
   try {
     const now = new Date();
