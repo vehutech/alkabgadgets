@@ -126,7 +126,7 @@ const HeroVideoSlider: React.FC = () => {
               >
                 <div className="relative w-full h-full">
                   {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-orange-500/10 to-slate-900/10 rounded-2xl md:rounded-3xl z-10" />
+                  <div className="absolute inset-0 bg-linear-to-br from-orange-500/10 to-slate-900/10 rounded-2xl md:rounded-3xl z-10" />
                   
                   {/* Video element */}
                   <video
@@ -145,7 +145,7 @@ const HeroVideoSlider: React.FC = () => {
                   </video>
                   
                   {/* Bottom gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 to-transparent rounded-2xl md:rounded-3xl z-10" />
+                  <div className="absolute inset-0 bg-linear-to-t from-white/20 to-transparent rounded-2xl md:rounded-3xl z-10" />
                 </div>
               </div>
             ))}

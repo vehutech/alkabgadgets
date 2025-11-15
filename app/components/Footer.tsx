@@ -1,5 +1,5 @@
 import React from 'react';
-import { Smartphone, Mail, Phone, MapPin, Instagram, Facebook, Twitter } from 'lucide-react';
+import { Mail, Phone, MapPin, Instagram, Facebook, Twitter } from 'lucide-react';
 import Image from 'next/image';
 
 function Footer() {

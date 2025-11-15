@@ -122,7 +122,7 @@ export default function MobileShop() {
         {/* Header */}
         <div className={`text-center mb-8 transition-all duration-500 ${isAnimating ? 'opacity-0 -translate-y-10' : 'opacity-100'}`}>
           <p className='text-white font-bold text-md mt-20'>Quality you can trust </p>
-           <h1 className="quicksand text-5xl md:text-7xl lg:text-8xl font-bold text-white -tracking-[0.1em] leading-none">
+           <h1 className="quicksand text-5xl md:text-7xl lg:text-8xl font-bold text-white -tracking-widest leading-none">
                 Alkab Gadgets
               </h1>
           <p className="text-white text-sm mt-8 -mb-5">Choose your category</p>

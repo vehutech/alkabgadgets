@@ -17,7 +17,7 @@ const page = () => {
       <HeroSlider />
       <Shop />
       <Testimonials />
-      <ContactUs />
+      {/* <ContactUs /> */}
       <GoogleMap embedUrl='https://maps.app.goo.gl/8zTYi4Mu1hzeW7c36?g_st=iwb'/>
     </div>
   )

@@ -1,6 +1,7 @@
 "use client";
 import { useState, useMemo } from "react";
 import { Search, SlidersHorizontal, X, ChevronLeft, ChevronRight, Play, Star, ShoppingCart, Heart } from "lucide-react";
+import Image from "next/image";
 
 // Product type definition
 type ProductType = {
@@ -383,7 +384,8 @@ export default function Shop() {
             >
               {/* Product Image */}
               <div className="relative aspect-square overflow-hidden bg-neutral-100 dark:bg-neutral-900">
-                <img
+                <Image
+                  fill
                   src={product.images[0]}
                   alt={product.name}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
@@ -463,14 +465,14 @@ export default function Shop() {
               <div>
                 <div className="relative aspect-square rounded-2xl overflow-hidden bg-neutral-100 dark:bg-neutral-800 mb-4">
                   {currentImageIndex < selectedProduct.images.length ? (
-                    <img
+                    <Image
                       src={selectedProduct.images[currentImageIndex]}
                       alt={selectedProduct.name}
                       className="w-full h-full object-cover"
                     />
                   ) : (
                     <div className="relative w-full h-full flex items-center justify-center">
-                      <img
+                      <Image
                         src={selectedProduct.video}
                         alt="Video thumbnail"
                         className="w-full h-full object-cover"
@@ -510,7 +512,7 @@ export default function Shop() {
                           : "border-transparent hover:border-neutral-300 dark:hover:border-neutral-600"
                       }`}
                     >
-                      <img src={img} alt={`View ${idx + 1}`} className="w-full h-full object-cover" />
+                      <Image src={img} alt={`View ${idx + 1}`} className="w-full h-full object-cover" />
                     </button>
                   ))}
                   <button
@@ -521,7 +523,7 @@ export default function Shop() {
                         : "border-transparent hover:border-neutral-300 dark:hover:border-neutral-600"
                     }`}
                   >
-                    <img src={selectedProduct.video} alt="Video" className="w-full h-full object-cover" />
+                    <Image src={selectedProduct.video} alt="Video" className="w-full h-full object-cover" />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/20">
                       <Play className="w-6 h-6 text-white" />
                     </div>
