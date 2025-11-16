@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import ConditionalLayout from "./components/ConditionalLayout";
 
 // Geist — default global font
 const geist = Geist({
@@ -51,9 +52,9 @@ export default function RootLayout({
       className={`${geist.variable} ${quickSandFont.variable}`}
     >
       <body className="antialiased font-[var(--font-geist-sans)]">
-        <Nav />
+        <ConditionalLayout>
         {children}
-        <Footer />
+        </ConditionalLayout>
       </body>
     </html>
   );
